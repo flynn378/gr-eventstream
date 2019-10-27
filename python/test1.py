@@ -21,7 +21,7 @@
 # 
 
 from gnuradio import gr, gr_unittest
-import es;
+import eventstream as es;
 import random;
 
 
@@ -34,7 +34,7 @@ class qa_es (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_square_ff (self):
-        print "ok"
+        print ("ok")
         #print dir(es);
     
     def test_002_es_source (self):
@@ -60,7 +60,7 @@ class qa_es (gr_unittest.TestCase):
         #e1 = es.es_make_event_gen_vector_f(arb, [1,2,3,4]);
         #e1.set_time(13)
 
-        #print dir(es)
+        #print (dir(es))
         #e1 = es.event_create( "test_event", 13, 4 );
         #e1 = es.event_create( "test_event", 13, 4 );
         queue.register_event_type( es.event_type( e1 ) );
@@ -73,7 +73,7 @@ class qa_es (gr_unittest.TestCase):
 
         # run the graph to completion and print output stream
         tb.run();
-        print snk.data();
+        print (snk.data());
     
 
 if __name__ == '__main__':

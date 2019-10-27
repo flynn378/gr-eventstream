@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import numpy;
-import es;
+import eventstream as es;
 from gnuradio import gr;
 
 def int_list_to_string(l1):
@@ -44,5 +44,5 @@ if __name__ == '__main__':
     a = [0x00, 0x01, 0x02, 0x0A, 0xFF];
     b = int_list_to_string(a);
     c = mod_bits_qpsk(b);
-    print c;
+    print (c);
 

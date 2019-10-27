@@ -64,6 +64,6 @@ if __name__ == '__main__':
     tb.connect(a,c,d);
     tb.connect( (b,0), (c,1) );
     tb.run();
-    print d.data();   
+    print (d.data());   
 
 

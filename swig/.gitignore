@@ -1,8 +1,0 @@
-/.deps
-/.libs
-/Makefile.in
-/Makefile
-/es_swig.cc
-/es_swig.py
-/*.lo
-/*.la

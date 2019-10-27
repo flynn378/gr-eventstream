@@ -1,23 +1,27 @@
-FIND_PACKAGE(SWIG)
-FIND_PACKAGE(PythonLibs)
-IF(NOT SWIG_FOUND OR NOT PYTHONLIBS_FOUND)
-    RETURN()
-ENDIF()
-INCLUDE(GrSwig)
-INCLUDE(GrPython)
+########################################################################
+# Include python install macros
+########################################################################
+include(GrPython)
+if(NOT PYTHONINTERP_FOUND)
+    return()
+endif()
 
+########################################################################
+# Install python sources
+########################################################################
 GR_PYTHON_INSTALL(
     FILES
-    es_trigger_keyboard.py
-    es_trigger_timer.py
-    #patterned_interleaver.py
-    util.py
-    DESTINATION ${GR_PYTHON_DIR}/es
-    COMPONENT "es_py"
+    __init__.py
+    trigger_keyboard.py
+    trigger_timer.py
+    util.py DESTINATION ${GR_PYTHON_DIR}/eventstream
 )
 
-# this is only here for debugging purposes
-# useful for grabbing segfaults under ctest
-#add_test(run_xterm xterm)
-  
-GR_ADD_TEST(qa_es ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_es.py)
+########################################################################
+# Handle the unit tests
+########################################################################
+include(GrTest)
+
+set(GR_TEST_TARGET_DEPS gnuradio-eventstream)
+set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
+GR_ADD_TEST(qa_eventstream, ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_eventstream.py)
